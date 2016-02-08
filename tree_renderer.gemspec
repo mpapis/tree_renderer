@@ -14,8 +14,13 @@ Gem::Specification.new do |s|
   s.files = `git ls-files -z`.split("\0")
   s.test_files = `git ls-files -z -- {test,spec,features}/*`.split("\0")
   s.required_ruby_version = ">= 1.9.3"
-  %w{rake minitest simplecov coveralls guard guard-minitest}.each do |name|
-    s.add_development_dependency(name)
-  end
+
+  s.add_development_dependency "rake",               "~> 10.0"
+  s.add_development_dependency "guard",              "~> 2.0"
+  s.add_development_dependency "guard-minitest",     "~> 2.0"
+  s.add_development_dependency "minitest",           "~> 4.0"
+  s.add_development_dependency "minitest-reporters", "~> 0"
+  s.add_development_dependency "simplecov",          "~> 0.11"
+  s.add_development_dependency "coveralls",          "~> 0.8"
   # s.add_development_dependency("smf-gem")
 end
