@@ -1,3 +1,9 @@
+=begin
+Copyright 2014 Michal Papis <mpapis@gmail.com>
+
+See the file LICENSE for copying permission.
+=end
+
 require "date"
 require "erb"
 require "fileutils"
@@ -21,11 +27,11 @@ private
     case variables
     when Hash
       require "ostruct"
-      OpenStruct.new(variables).send(:binding)
+      OpenStruct.new(variables).instance_eval { binding }
     when Binding
       variables
     else
-      variables.send(:binding)
+      variables.instance_eval { binding }
     end
   end
 
@@ -35,7 +41,7 @@ private
 
   def parse_and_save(file)
     save_file(
-      target_path(file),
+      transform_path(file),
       parse_template(file),
     )
   end
@@ -45,7 +51,7 @@ private
     File.write(path, content, 0, mode: "w")
   end
 
-  def target_path(template_path, file)
+  def transform_path(file)
     render(file.sub(template_path, target_path))
   end
 
