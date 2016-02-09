@@ -6,6 +6,7 @@ See the file LICENSE for copying permission.
 
 require "minitest_helper"
 require "tree_renderer"
+require "tree_renderer/version"
 require "ostruct"
 
 describe TreeRenderer do
@@ -38,6 +39,21 @@ describe TreeRenderer do
     end
   end
 
+  describe "#save_file" do
+    before do
+      FileUtils.mkdir_p(TREE_RENDERER_TMP_DIR)
+    end
+    after do
+      FileUtils.rm_rf(TREE_RENDERER_TMP_DIR)
+    end
+    it "saves a file" do
+      test_path = TREE_RENDERER_TMP_DIR.join("save_file.txt")
+      content   = "test\nme\n"
+      subject.new("path1", "path2").send(:save_file, test_path, content)
+      File.read(test_path).must_equal(content)
+    end
+  end
+
   describe "#transform_path" do
     it "transforms paths with erb" do
       subject.new(
@@ -47,6 +63,20 @@ describe TreeRenderer do
       ).must_equal(
         "/path2/lib/some/path/file.txt"
       )
+    end
+  end
+
+  describe "#parse_template" do
+    it "loads a file" do
+      subject.new(
+        "/path1/bin", "/path2/lib", name: "file"
+      ).send(
+        :parse_template, File.expand_path("../../lib/tree_renderer/version.rb", __FILE__)
+      ).must_equal(<<-VERSION_FILE)
+class TreeRenderer
+  VERSION = "#{TreeRenderer::VERSION}"
+end
+VERSION_FILE
     end
   end
 

@@ -24,6 +24,11 @@ end
 
 require "minitest/autorun"
 require "minitest/reporters"
+require "tmpdir"
+require "pathname"
+require "fileutils"
+
+TREE_RENDERER_TMP_DIR = Pathname(Dir.tmpdir).join("tree_renderer")
 
 Dir['lib/**/*.rb'].each { |file| require "./#{file}" } # coverals trick for all files
 
