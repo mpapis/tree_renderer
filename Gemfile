@@ -11,7 +11,7 @@ gemspec
 group :development do
   # statistics only on MRI 2.3 - avoid problems on older rubies
   if RUBY_VERSION == "2.3.0"
-    gem "codeclimate-test-reporter", require: nil
+    gem "codeclimate-test-reporter", :require => nil
     gem "redcarpet"
   end
 
