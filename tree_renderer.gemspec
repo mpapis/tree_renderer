@@ -16,8 +16,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 1.9.3"
 
   s.add_development_dependency "rake",               "~> 10.0"
-  s.add_development_dependency "guard",              "~> 2.0"
-  s.add_development_dependency "guard-minitest",     "~> 2.0"
   s.add_development_dependency "minitest",           "~> 4.0"
   s.add_development_dependency "minitest-reporters", "~> 0"
   s.add_development_dependency "simplecov",          "~> 0.11"

@@ -14,17 +14,17 @@ describe TreeRenderer do
 
   describe "#new" do
     it "sets binding directly" do
-      example = OpenStruct.new(a: 1).instance_eval { binding }
+      example = OpenStruct.new(:a => 1).instance_eval { binding }
       subject.new("path1", "path2", example).var_binding.must_equal(example)
     end
 
     it "sets binding from object" do
-      example = OpenStruct.new(a: 1)
+      example = OpenStruct.new(:a => 1)
       subject.new("path1", "path2", example).var_binding.must_be_instance_of(Binding)
     end
 
     it "sets binding from hash" do
-      example = {a: 1}
+      example = {:a => 1}
       subject.new("path1", "path2", example).var_binding.must_be_instance_of(Binding)
     end
   end
@@ -34,7 +34,7 @@ describe TreeRenderer do
       FileUtils.rm_rf(TREE_RENDERER_TMP_DIR)
     end
     it "saves a file" do
-      subject.new(File.expand_path("../../example_template", __FILE__), TREE_RENDERER_TMP_DIR.to_s, name: "example", description: "Example project template").save
+      subject.new(File.expand_path("../../example_template", __FILE__), TREE_RENDERER_TMP_DIR.to_s, :name => "example", :description => "Example project template").save
       Dir.chdir TREE_RENDERER_TMP_DIR do
         Dir.glob("**/*").must_equal(%w[
          README.md
@@ -83,7 +83,7 @@ CONTENT
   describe "#transform_path" do
     it "transforms paths with erb" do
       subject.new(
-        "/path1/bin", "/path2/lib", name: "file"
+        "/path1/bin", "/path2/lib", :name => "file"
       ).send(
         :transform_path, "/path1/bin/some/path/<%= name %>.txt"
       ).must_equal(
@@ -95,7 +95,7 @@ CONTENT
   describe "#parse_template" do
     it "loads a file" do
       subject.new(
-        "/path1/bin", "/path2/lib", name: "file"
+        "/path1/bin", "/path2/lib", :name => "file"
       ).send(
         :parse_template, File.expand_path("../../lib/tree_renderer/version.rb", __FILE__)
       ).must_equal(<<-VERSION_FILE)
@@ -120,7 +120,7 @@ VERSION_FILE
 
     it "render text with erb" do
       subject.new(
-        "/path1/bin", "/path2/lib", name: "dolor"
+        "/path1/bin", "/path2/lib", :name => "dolor"
       ).send(
         :render, "Lorem ipsum <%= name %>"
       ).must_equal(

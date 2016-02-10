@@ -73,7 +73,7 @@ private
   def parse_and_save(file)
     save_file(
       transform_path(file),
-      parse_template(file),
+      parse_template(file)
     )
   end
 
@@ -84,7 +84,9 @@ private
   #
   def save_file(path, content)
     FileUtils.mkdir_p(File.expand_path("..", path))
-    File.write(path, content, 0, mode: "w")
+    File.open(path, "w") do |f|
+      f.write(content)
+    end
   end
 
   # translates path to `file` from `template_path` to `target_path`
