@@ -15,7 +15,12 @@ require "fileutils"
 #     TreeRenderer.new("/template/path", "/target/path", variables).save
 #
 class TreeRenderer
-  attr_reader :template_path, :target_path, :var_binding
+  # @return [String] the path to the template directory to be rendered
+  attr_reader :template_path
+  # @return [String] the target path where to render the template
+  attr_reader :target_path
+  # @return [Binding] binding for the variables to use for rendering
+  attr_reader :var_binding
 
   # Initialize the paths and variables for rendering
   #
