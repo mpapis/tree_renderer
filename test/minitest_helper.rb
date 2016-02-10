@@ -7,19 +7,16 @@ See the file LICENSE for copying permission.
 if
   RUBY_VERSION == "2.3.0" # check Gemfile
 then
-  require "coveralls"
+  require "codeclimate-test-reporter"
+  CodeClimate::TestReporter.start
+
   require "simplecov"
 
   SimpleCov.start do
-    formatter SimpleCov::Formatter::MultiFormatter[
-      SimpleCov::Formatter::HTMLFormatter,
-      Coveralls::SimpleCov::Formatter,
-    ]
+    formatter SimpleCov::Formatter::HTMLFormatter
     command_name "Spesc Tests"
     add_filter "/test/"
   end
-
-  Coveralls.noisy = true unless ENV['CI']
 end
 
 require "minitest/autorun"

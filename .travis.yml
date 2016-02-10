@@ -1,3 +1,6 @@
+addons:
+    code_climate:
+        repo_token: 6f8606637c60012013e2a7fddf2735de7643c74d4382429a9b58f98b5ed2d7ac
 bundler_args: ""
 before_install:
   - "gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
