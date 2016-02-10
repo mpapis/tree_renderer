@@ -14,3 +14,7 @@ group :development do
   gem "simplecov"
   gem "coveralls"
 end if RUBY_VERSION == "2.3.0"
+
+if RUBY_VERSION == "1.8.7"
+  gem "mime-types", "<2.0.0"
+end
