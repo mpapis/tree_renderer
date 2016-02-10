@@ -1,11 +1,11 @@
 =begin
-Copyright 2014 Michal Papis <mpapis@gmail.com>
+Copyright 2016 Michal Papis <mpapis@gmail.com>
 
 See the file LICENSE for copying permission.
 =end
 
 if
-  RUBY_VERSION == "2.0.0" # check Gemfile
+  RUBY_VERSION == "2.3.0" # check Gemfile
 then
   require "coveralls"
   require "simplecov"

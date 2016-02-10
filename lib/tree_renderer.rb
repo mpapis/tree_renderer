@@ -1,5 +1,5 @@
 =begin
-Copyright 2014 Michal Papis <mpapis@gmail.com>
+Copyright 2016 Michal Papis <mpapis@gmail.com>
 
 See the file LICENSE for copying permission.
 =end

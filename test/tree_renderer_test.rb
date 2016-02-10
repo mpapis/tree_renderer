@@ -1,5 +1,5 @@
 =begin
-Copyright 2014 Michal Papis <mpapis@gmail.com>
+Copyright 2016 Michal Papis <mpapis@gmail.com>
 
 See the file LICENSE for copying permission.
 =end
@@ -26,6 +26,32 @@ describe TreeRenderer do
     it "sets binding from hash" do
       example = {a: 1}
       subject.new("path1", "path2", example).var_binding.must_be_instance_of(Binding)
+    end
+  end
+
+  describe "#save" do
+    after do
+      FileUtils.rm_rf(TREE_RENDERER_TMP_DIR)
+    end
+    it "saves a file" do
+      subject.new(File.expand_path("../../example_template", __FILE__), TREE_RENDERER_TMP_DIR.to_s, name: "example", description: "Example project template").save
+      Dir.chdir TREE_RENDERER_TMP_DIR do
+        Dir.glob("**/*").must_equal(%w[
+         README.md
+         lib
+         lib/example.rb
+        ])
+        File.read("README.md").must_equal(<<-CONTENT)
+# example
+
+Example project template
+CONTENT
+        File.read("lib/example.rb").must_equal(<<-CONTENT)
+# Example project template
+class Example
+end
+CONTENT
+      end
     end
   end
 

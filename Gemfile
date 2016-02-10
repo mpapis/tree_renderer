@@ -1,5 +1,5 @@
 =begin
-Copyright 2014 Michal Papis <mpapis@gmail.com>
+Copyright 2016 Michal Papis <mpapis@gmail.com>
 
 See the file LICENSE for copying permission.
 =end
@@ -8,9 +8,9 @@ source "https://rubygems.org"
 
 gemspec
 
+# statistics only on MRI 2.3 - avoid problems on older rubies
 group :development do
-  # statistics only on MRI 2.0 - avoid problems on older rubies
-  gem "redcarpet", :platforms => [:mri_20]
-  gem "simplecov", :platforms => [:mri_20]
-  gem "coveralls", :platforms => [:mri_20]
-end
+  gem "redcarpet"
+  gem "simplecov"
+  gem "coveralls"
+end if RUBY_VERSION == "2.3.0"
