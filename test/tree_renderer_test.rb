@@ -100,6 +100,7 @@ CONTENT
         :parse_template, File.expand_path("../../lib/tree_renderer/version.rb", __FILE__)
       ).must_equal(<<-VERSION_FILE)
 class TreeRenderer
+  # Version of the gem
   VERSION = "#{TreeRenderer::VERSION}"
 end
 VERSION_FILE
