@@ -12,8 +12,6 @@ group :development do
   # statistics only on MRI 2.3 - avoid problems on older rubies
   if RUBY_VERSION == "2.3.0"
     gem "redcarpet"
-    gem "simplecov"
-    gem "coveralls"
   end
 
   # lower required versions for old ruby
