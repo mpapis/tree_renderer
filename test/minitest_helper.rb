@@ -29,6 +29,6 @@ require "fileutils"
 
 TREE_RENDERER_TMP_DIR = Pathname(Dir.tmpdir).join("tree_renderer")
 
-Dir['lib/**/*.rb'].each { |file| require "./#{file}" } # coverals trick for all files
+Dir['lib/**/*.rb'].each { |file| require "./#{file}" } # coverage trick for all files
 
 Minitest::Reporters.use!  if RUBY_VERSION != "1.8.7"
