@@ -7,15 +7,17 @@ See the file LICENSE for copying permission.
 if
   RUBY_VERSION == "2.3.0" # check Gemfile
 then
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.start
+  if ENV["CI"]
+    require "codeclimate-test-reporter"
+    CodeClimate::TestReporter.start
+  else
+    require "simplecov"
 
-  require "simplecov"
-
-  SimpleCov.start do
-    formatter SimpleCov::Formatter::HTMLFormatter
-    command_name "Spesc Tests"
-    add_filter "/test/"
+    SimpleCov.start do
+      formatter SimpleCov::Formatter::HTMLFormatter
+      command_name "Spesc Tests"
+      add_filter "/test/"
+    end
   end
 end
 
