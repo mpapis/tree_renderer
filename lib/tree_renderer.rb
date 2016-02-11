@@ -17,8 +17,10 @@ require "fileutils"
 class TreeRenderer
   # @return [String] the path to the template directory to be rendered
   attr_reader :template_path
+
   # @return [String] the target path where to render the template
   attr_reader :target_path
+
   # @return [Binding] binding for the variables to use for rendering
   attr_reader :var_binding
 
